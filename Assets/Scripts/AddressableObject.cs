@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Object = UnityEngine.Object;
 
-public abstract class AddressableObject<T> : MonoBehaviour where T : Object
+public abstract class AddressableObject : MonoBehaviour
 {
     [Header("Addressable Config")]
     [SerializeField] protected string m_AssetAddressKey;
     [SerializeField] protected bool m_LoadOnStart;
 
-    protected abstract void LoadCompleted(T _loadedAsset);
+    protected abstract void LoadCompleted(Object _loadedAsset);
 
     protected readonly BoolReactiveProperty IsLoading = new BoolReactiveProperty();
 
-    private Action<T> OnLoadedComplete;
+    private Action<Object> OnLoadedComplete;
     private Object LoadedAsset;
 
     private IDisposable _LoadDisposable;
@@ -29,7 +29,7 @@ public abstract class AddressableObject<T> : MonoBehaviour where T : Object
 
         _LoadDisposable?.Dispose();
         _LoadDisposable = AddressableManager
-            .GetAssetAsObservable<T>(_addressKey)
+            .GetAssetAsObservable<Object>(_addressKey)
             .Subscribe(_ =>
             {
                 if (LoadedAsset && !m_AssetAddressKey.Equals(_addressKey))
@@ -50,7 +50,7 @@ public abstract class AddressableObject<T> : MonoBehaviour where T : Object
         AddressableManager.RemoveFromAssetDirectory(m_AssetAddressKey);
     }
 
-    protected IObservable<T> OnLoadedCompleteAsObservable() => Observable.FromEvent<T>(
+    protected IObservable<Object> OnLoadedCompleteAsObservable() => Observable.FromEvent<Object>(
         _action => OnLoadedComplete += _action,
         _action => OnLoadedComplete -= _action
     );

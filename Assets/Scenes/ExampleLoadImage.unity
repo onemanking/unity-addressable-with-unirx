@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 114830779}
   - component: {fileID: 114830778}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button.LoadAsset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 153133669}
   - component: {fileID: 153133668}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: RawImage.Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,9 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc28a15aa21b45945b2696a170078591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetAddressKey: sprite1
-  m_LoadOnStart: 1
-  m_Image: {fileID: 153133669}
+  m_AssetAddressKey: 
+  m_LoadOnStart: 0
 --- !u!114 &153133669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Load Asset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -864,7 +863,7 @@ GameObject:
   - component: {fileID: 1060324447}
   - component: {fileID: 1060324446}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button.ChangeScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,7 +999,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1184836769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d7dc88f8bdbb246b5c2962062f9b2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ab59427b57afe7489a09dac723be44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InputField: {fileID: 1854894350}
