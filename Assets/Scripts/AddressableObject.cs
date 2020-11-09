@@ -29,7 +29,7 @@ public abstract class AddressableObject : MonoBehaviour
 
         _LoadDisposable?.Dispose();
         _LoadDisposable = AddressableManager
-            .GetAssetAsObservable<Object>(_addressKey)
+            .GetAssetAsObservable(_addressKey)
             .Subscribe(_ =>
             {
                 if (LoadedAsset && !m_AssetAddressKey.Equals(_addressKey))

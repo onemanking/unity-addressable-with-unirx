@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniRx;
+using Object = UnityEngine.Object;
 
 public static class AddressableManager
 {
-    private static Dictionary<string, UnityEngine.Object> _AssetDirectory = new Dictionary<string, UnityEngine.Object>();
+    private static Dictionary<string, Object> _AssetDirectory = new Dictionary<string, Object>();
 
-    public static IObservable<T> GetAssetAsObservable<T>(string _assetKey) where T : UnityEngine.Object
+    public static IObservable<Object> GetAssetAsObservable(string _assetKey)
     {
         if (_AssetDirectory.ContainsKey(_assetKey))
         {
-            return Observable.Create<T>(_observer =>
+            return Observable.Create<Object>(_observer =>
             {
                 var disposable = Observable.EveryUpdate().Subscribe(_ =>
                 {
-                    _observer.OnNext((T) _AssetDirectory[_assetKey]);
+                    _observer.OnNext(_AssetDirectory[_assetKey]);
                     _observer.OnCompleted();
                 }, _observer.OnError);
 
@@ -22,7 +23,7 @@ public static class AddressableManager
             });
         }
 
-        return AddressablesExtensions.LoadAssetAsync<T>(_assetKey).Do(_ => _AssetDirectory[_assetKey] = _);
+        return AddressablesExtensions.LoadAssetAsync<Object>(_assetKey).Do(_ => _AssetDirectory[_assetKey] = _);
     }
 
     public static bool RemoveFromAssetDirectory(string _assetKey) => _AssetDirectory.Remove(_assetKey);
