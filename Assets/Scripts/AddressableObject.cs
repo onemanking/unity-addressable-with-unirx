@@ -9,6 +9,7 @@ public abstract class AddressableObject : MonoBehaviour
     [Header("Addressable Config")]
     [SerializeField] protected string m_AssetAddressKey;
     [SerializeField] protected bool m_LoadOnStart;
+    [SerializeField] protected bool m_IsPrefabObject;
 
     protected abstract void LoadCompleted(Object _loadedAsset);
 
@@ -20,6 +21,7 @@ public abstract class AddressableObject : MonoBehaviour
     private IDisposable _LoadDisposable;
     protected virtual void Start()
     {
+        OnLoadedCompleteAsObservable().Subscribe(_ => LoadCompleted(_)).AddTo(this);
         if (m_LoadOnStart) LoadAsset(m_AssetAddressKey);
     }
 
@@ -28,19 +30,39 @@ public abstract class AddressableObject : MonoBehaviour
         IsLoading.Value = true;
 
         _LoadDisposable?.Dispose();
-        _LoadDisposable = AddressableManager
-            .GetAssetAsObservable(_addressKey)
-            .Subscribe(_ =>
-            {
-                if (LoadedAsset && !m_AssetAddressKey.Equals(_addressKey))
-                    Release(LoadedAsset);
 
-                LoadedAsset = _;
-                m_AssetAddressKey = _addressKey;
-                OnLoadedComplete?.Invoke(_);
-                IsLoading.Value = false;
-            }, Debug.LogError)
-            .AddTo(this);
+        if (!m_IsPrefabObject)
+        {
+            _LoadDisposable = AddressableManager
+                .GetAssetAsObservable(_addressKey)
+                .Subscribe(_ =>
+                {
+                    if (LoadedAsset && !m_AssetAddressKey.Equals(_addressKey))
+                        Release(LoadedAsset);
+
+                    LoadedAsset = _;
+                    m_AssetAddressKey = _addressKey;
+                    OnLoadedComplete?.Invoke(_);
+                    IsLoading.Value = false;
+                }, Debug.LogError)
+                .AddTo(this);
+        }
+        else
+        {
+            _LoadDisposable = AddressableManager
+                .InstantiateAsObservable(_addressKey)
+                .Subscribe(_ =>
+                {
+                    if (LoadedAsset && !m_AssetAddressKey.Equals(_addressKey))
+                        Release(LoadedAsset);
+
+                    LoadedAsset = _;
+                    m_AssetAddressKey = _addressKey;
+                    OnLoadedComplete?.Invoke(_);
+                    IsLoading.Value = false;
+                }, Debug.LogError)
+                .AddTo(this);
+        }
     }
 
     private void Release(Object _releaseObject)
