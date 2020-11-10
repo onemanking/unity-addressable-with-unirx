@@ -22,7 +22,7 @@
 
   - Note the **Build and Load Paths** section those are for setting for set build and load path for your Addressable Asset.
   
-  ![image-20201110161344789](Manual\Images\image-20201110161344789.png)
+  ![image-20201110161344789](Manual/Images/image-20201110161344789.png)
 
 - You can set **Addressable Profile** by go to **Window** > **Asset Management** > **Addressables** > **Profiles** to open the **Addressables Profiles** window.
 
@@ -46,7 +46,7 @@
 
 ***Note In case you want to update new asset or after modify exist Addressable Asset Use Update a Previous Build only to update the asset otherwise your application will not be able to use updated Addressable Asset***.
 
-  ![image-20201110164525290](Manual\Images\image-20201110164525290.png)
+  ![image-20201110164525290](Manual/Images/image-20201110164525290.png)
 
 ## How to use scripts
 
