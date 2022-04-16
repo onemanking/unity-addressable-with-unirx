@@ -20,7 +20,7 @@
 
 - Select **Addressables Groups** and modify property in **Inspector**.
 
-  - Note the **Build and Load Paths** section those are for setting for set build and load path for your Addressable Asset.
+  - Look at the **Build and Load Paths** section this is the setting section for set the build and load path for your Addressable Asset.
   
   ![image-20201110161344789](Manual/Images/image-20201110161344789.png)
 
@@ -44,7 +44,7 @@
   
 - New / Update build will be appear in **Build Path** you were set in **How to Setup Addressable** section.
 
-***Note In case you want to update new asset or after modify exist Addressable Asset Use Update a Previous Build only to update the asset otherwise your application will not be able to use updated Addressable Asset***.
+***Note In case you want to update new asset or after modify exist Addressable Asset. Use Update a Previous Build only to update the asset, otherwise your application will not be able to use updated Addressable Asset***.
 
   ![image-20201110164525290](Manual/Images/image-20201110164525290.png)
 
@@ -87,9 +87,9 @@ AddressableManager
 - Every methods above already implement in `AddressableObject` script.
 
   - In any case when you want to load Unity asset, just create a derive class that inherit from abstract class `AddressableObject` like example below.
-  - in example, we want to load TMP_FontAsset as addressable asset.
+  - In the example, it's load TMP_FontAsset as addressable asset.
 
-  - note the `LoadCompleted` method, that is a abstract method that you must to implement into derived class to do actions with loaded asset. In this case the script just assign font asset to `_Text`.
+  - Note the `LoadCompleted` method, this is a abstract method that you must to implement into derived class to do an action with loaded asset. In this case the script just assign font asset to `_Text`.
 
 ```c#
 public class FontLoad : AddressableObject
@@ -104,7 +104,7 @@ public class FontLoad : AddressableObject
 }
 ```
 
-***Note AddressableManager and AddressablerObject have some problem when the game object that contains the loaded asset has been destroyed, and there are other game objects still share the loaded asset. there will cause the problem because the loaded asset will be missing.***
+***Note AddressableManager and AddressablerObject have some problem when the game object that contains the loaded asset has been destroyed, and there are other game objects still sharing the loaded asset. There will cause the problem because the loaded asset will be missing.***
 
 ## Example Scenes
 
