@@ -20,13 +20,13 @@
 
 - Select **Addressables Groups** and modify property in **Inspector**.
 
-  - Look at the **Build and Load Paths** section this is the setting section for set the build and load path for your Addressable Asset.
+  - Look at the **Build and Load Paths** section, this is the setting section for set the build and load path for your Addressable Asset.
   
   ![image-20201110161344789](Manual/Images/image-20201110161344789.png)
 
 - You can set **Addressable Profile** by go to **Window** > **Asset Management** > **Addressables** > **Profiles** to open the **Addressables Profiles** window.
 
-- To use build assets in Editor In **Addressables Groups** window Click on **Play Mode Script** > **Use Existing Build (requires built groups)** this is most closely matches a deployed application build. See [AddressableAssetsDevelopmentCycle](https://docs.unity3d.com/Packages/com.unity.addressables@1.8/manual/AddressableAssetsDevelopmentCycle.html) for more details.
+- To use build assets in Editor. In **Addressables Groups** window Click on **Play Mode Script** > **Use Existing Build (requires built groups)** this is most closely matches a deployed application build. See [AddressableAssetsDevelopmentCycle](https://docs.unity3d.com/Packages/com.unity.addressables@1.8/manual/AddressableAssetsDevelopmentCycle.html) for more details.
 
 - If you want to use Remote server and load asset from remote please check this [【Unity Addressables Tutorial】How to update content on build from remote path](https://www.youtube.com/watch?v=KJbNsaj1c1o) Youtube video.
 
@@ -44,7 +44,7 @@
   
 - New / Update build will be appear in **Build Path** you were set in **How to Setup Addressable** section.
 
-***Note In case you want to update new asset or after modify exist Addressable Asset. Use Update a Previous Build only to update the asset, otherwise your application will not be able to use updated Addressable Asset***.
+***Note in the case you want to update new asset or after modify exist Addressable Asset. Use Update a Previous Build only to update the asset, otherwise your application will not be able to use updated Addressable Asset***.
 
   ![image-20201110164525290](Manual/Images/image-20201110164525290.png)
 
@@ -89,7 +89,7 @@ AddressableManager
   - In any case when you want to load Unity asset, just create a derive class that inherit from abstract class `AddressableObject` like example below.
   - In the example, it's load TMP_FontAsset as addressable asset.
 
-  - Note the `LoadCompleted` method, this is a abstract method that you must to implement into derived class to do an action with loaded asset. In this case the script just assign font asset to `_Text`.
+  - Note the `LoadCompleted` method, this is an abstract method that you must to implement into derived class to do an action with loaded asset. In this case the script just assign font asset to `_Text`.
 
 ```c#
 public class FontLoad : AddressableObject
